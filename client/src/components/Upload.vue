@@ -19,20 +19,8 @@ function selectFile() {
 
 function selectedFile() {
   if (files) {
-    console.log(files);
-    // filesData.value = files.map(file => ({
-    //   name: file.name,
-    //   size: file.size,
-    //   type: file.type,
-    //   lastModified: file.lastModified,
-    // }))
-
     const formData = new FormData();
-    formData.append('files', files);
-
-    // console.log('fileName:', files[0]);
-    // console.log(formData, 'formData');
-
+    formData.append('video', files._value[0]);
     axios.post('http://localhost:3000/api/upload',
       formData,
       {
@@ -46,11 +34,7 @@ function selectedFile() {
     })
       .catch(function () {
         console.log('FAILURE!!');
-        //    router.push('/workplace');
       });
-    //    this.$router.push('/workplace');
-
-
   }
 }
 
@@ -59,18 +43,8 @@ function onDrop(files: File[] | null) {
   filesData.value = []
   if (files) {
     console.log(files);
-    // filesData.value = files.map(file => ({
-    //   name: file.name,
-    //   size: file.size,
-    //   type: file.type,
-    //   lastModified: file.lastModified,
-    // }))
-
     const formData = new FormData();
-    formData.append('video', files);
-
-    console.log(formData, 'formData');
-
+    formData.append('video', files[0]);
     axios.post('http://localhost:3000/api/upload',
       formData,
       {
@@ -85,7 +59,6 @@ function onDrop(files: File[] | null) {
       .catch(function () {
         console.log('FAILURE!!');
       });
-    //    this.$router.push('/workplace');
   }
 }
 
